@@ -1,0 +1,41 @@
+:root{
+    --color-background:#444;
+    --color-main:#eee
+}
+
+
+
+body {
+    height: 100%;
+    overflow: hidden;
+    background-color: var(--color-background);
+
+ }
+
+#app{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+}
+
+.bar{
+    background-color: var(--color-main);
+    width: 12rem;
+    height: 0.75rem;
+    border-radius: 0.5rem;
+    box-shadow: 0rem 0rem 2rem var(--color-main);
+    position: absolute;
+    left: 50%;
+    bottom: 1rem;
+    transform: translate(-50%,-50%);
+
+}
+
+.ball{
+    background-color: var(--color-main);
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;    
+    box-shadow: 0rem 0rem 2rem var(--color-main);
+
+}
