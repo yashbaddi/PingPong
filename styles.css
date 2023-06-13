@@ -25,7 +25,7 @@ body {
     border-radius: 0.5rem;
     box-shadow: 0rem 0rem 2rem var(--color-main);
     position: absolute;
-    transform: translate(-50%,-50%);
+    /* transform: translate(-50%,-50%); */
 
 }
 

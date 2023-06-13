@@ -7,15 +7,18 @@ export function pingpongBar(position = "bottom") {
     bar.autofocus = true;
   }
 
-  bar.addEventListener("keydown", (event) => {
-    if (event.key === "ArrowLeft") {
-      console.log(event.target.style);
-
-      //   event.target.style.left =
-      //     parseInt(event.target.style.left || 0) + 1 + "rem";
-    }
-    if (event.key === "ArrowRight") {
-    }
-  });
+  bar.addEventListener("keydown", barEventHandler);
   return bar;
+}
+
+function barEventHandler(event) {
+  const computedStyle = window.getComputedStyle(event.target);
+  if (event.key === "ArrowLeft" && parseInt(computedStyle.left) >= 0) {
+    console.log(event.target.style);
+
+    event.target.style.left = parseInt(computedStyle.left || 0) - 50 + "px";
+  }
+  if (event.key === "ArrowRight" && parseInt(computedStyle.right) >= 0) {
+    event.target.style.left = parseInt(computedStyle.left || 0) + 50 + "px";
+  }
 }
