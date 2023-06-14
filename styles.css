@@ -44,5 +44,8 @@ body {
     height: 1.5rem;
     border-radius: 50%;    
     box-shadow: 0rem 0rem 2rem var(--color-main);
+    position: absolute;
+    left: 50%;
+    top: 50%;
 
 }
