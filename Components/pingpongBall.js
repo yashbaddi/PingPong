@@ -1,8 +1,3 @@
-export function changeAngle(div, angle) {
-  const computedStyle = getComputedStyle(div);
-  console.log(computedStyle);
-}
-
 export function linearAnimate(div, interval = 20) {
   let leftGrowthRate = 1;
   let topGrowthRate = 1;
