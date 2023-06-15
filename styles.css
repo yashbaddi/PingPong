@@ -50,3 +50,19 @@ body {
     transform: translate(-50%,-50%);
 
 }
+
+.game-over{
+    width: 20rem;
+    height: 10rem;
+    border: 1rem;
+    border-color: #fff;
+    
+}
+
+.game-over__button{
+
+}
+
+.game-over__message{
+
+}
