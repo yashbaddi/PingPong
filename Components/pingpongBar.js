@@ -12,7 +12,7 @@ export function pingpongBar(position = "bottom") {
 }
 
 function barEventHandler(event) {
-  const computedStyle = event.target.getBoundingClientRect();
+  const computedStyle = window.getComputedStyle(event.target);
   if (event.key === "ArrowLeft" && parseInt(computedStyle.left) >= 0) {
     console.log(event.target.style);
 
@@ -23,8 +23,8 @@ function barEventHandler(event) {
   }
 }
 export function isOverlapping(div1, div2) {
-  const div1Computed = div1.getBoundingClientRect();
-  const div2Computed = div2.getBoundingClientRect();
+  const div1Computed = window.getComputedStyle(div1);
+  const div2Computed = window.getComputedStyle(div2);
   return !(
     div1Computed.left > div2Computed.right ||
     div1Computed.right > div2Computed.left ||

@@ -5,11 +5,16 @@ import { createDOMElement } from "./utils.js";
 const app = document.getElementById("app");
 
 const bar = pingpongBar();
-// bar.focus();
 
 const ball = createDOMElement("div", ["ball"], [], {});
 
-// changeAngle(ball, 35);
 const intervalID = linearAnimate(ball);
 // isOverlapping(bar, ball);
 app.append(bar, ball);
+
+function isBallSmashed(bar, ball) {
+  if (!isOverlapping(bar, ball)) {
+    return false;
+  }
+  return true;
+}
