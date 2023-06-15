@@ -7,7 +7,7 @@ export function linearAnimate(
   let rightDirection = 1;
   let bottomDirection = 1;
   setInterval(() => {
-    const computedStyle = getComputedStyle(div);
+    const computedStyle = getBoundingClientRect(div);
     if (parseInt(computedStyle.left) <= 2) rightDirection = 1;
     if (parseInt(computedStyle.right) <= 2) rightDirection = -1;
     if (parseInt(computedStyle.top) <= 2) bottomDirection = 1;

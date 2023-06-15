@@ -12,7 +12,7 @@ export function pingpongBar(position = "bottom") {
 }
 
 function barEventHandler(event) {
-  const computedStyle = window.getComputedStyle(event.target);
+  const computedStyle = window.getBoundingClientRect(event.target);
   if (event.key === "ArrowLeft" && parseInt(computedStyle.left) >= 0) {
     console.log(event.target.style);
 
