@@ -22,3 +22,13 @@ function barEventHandler(event) {
     event.target.style.left = parseInt(computedStyle.left || 0) + 50 + "px";
   }
 }
+function isOverlapping(div1, div2) {
+  const div1Computed = getBoundingClientRect(div1);
+  const div2Computed = getBoundingClientRect(div2);
+  return !(
+    div1Computed.left > div2Computed.right ||
+    div1Computed.right > div2Computed.left ||
+    div1Computed.top > div2Computed.bottom ||
+    div1Computed.bottom > div2Computed.top
+  );
+}
