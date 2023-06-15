@@ -1,13 +1,13 @@
 export function linearAnimate(
   div,
   interval = 20,
-  speed = 1,
-  speedIncrementRate = 0.001
+  speed = 5,
+  speedIncrementRate = 0.0001
 ) {
   let rightDirection = 1;
   let bottomDirection = 1;
-  setInterval(() => {
-    const computedStyle = getBoundingClientRect(div);
+  const intervalID = setInterval(() => {
+    const computedStyle = div.getBoundingClientRect();
     if (parseInt(computedStyle.left) <= 2) rightDirection = 1;
     if (parseInt(computedStyle.right) <= 2) rightDirection = -1;
     if (parseInt(computedStyle.top) <= 2) bottomDirection = 1;
@@ -19,4 +19,5 @@ export function linearAnimate(
     div.style.top =
       parseInt(computedStyle.top) + speed * bottomDirection + "px";
   }, interval);
+  return intervalID;
 }
