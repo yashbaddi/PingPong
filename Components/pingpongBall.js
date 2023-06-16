@@ -4,37 +4,39 @@ export function linearAnimate(
   speed = 3,
   speedIncrementRate = 0.0001
 ) {
+  const direction = {
+    vertical: 1,
+    horizontal: 1,
+  };
+
   const intervalID = setInterval(() => {
     const computedStyle = window.getComputedStyle(div);
 
-    const direction = getDirection(
+    getDirection(
       computedStyle.left,
       computedStyle.right,
       computedStyle.top,
       computedStyle.bottom,
-      speed
+      direction
     );
+    console.log(direction, speed);
 
     speed = speed + speed * speedIncrementRate;
     div.style.left =
-      parseInt(computedStyle.left) + speed * direction.right + "px";
+      parseInt(computedStyle.left) + speed * direction.vertical + "px";
     div.style.top =
-      parseInt(computedStyle.top) + speed * direction.bottom + "px";
+      parseInt(computedStyle.top) + speed * direction.horizontal + "px";
   }, interval);
 
   return intervalID;
 }
 
-function getDirection(left, right, top, bottom, min = 2) {
-  const rightDir = 1;
-  const bottomDir = 1;
-
-  if (parseInt(left) <= speed) rightDir = 1;
-  if (parseInt(right) <= speed) rightDir = -1;
-  if (parseInt(top) <= speed) bottomDir = 1;
-  if (parseInt(bottom) <= speed) bottomDir = -1;
-
-  return { right: rightDir, bottom: bottomDir };
+function getDirection(left, right, top, bottom, direction, speed = 2) {
+  if (parseInt(left) <= speed) direction.vertical = 1;
+  if (parseInt(right) <= speed) direction.vertical = -1;
+  if (parseInt(top) <= speed) direction.horizontal = 1;
+  if (parseInt(bottom) <= speed) direction.horizontal = -1;
+  console.log(direction);
 }
 
 export function isOverlapping(div1, div2) {

@@ -11,13 +11,13 @@ const ball = createDOMElement("div", ["ball"], [], {});
 
 const intervalID = linearAnimate(ball);
 app.append(bar, ball);
-gameHandler(bar, ball, intervalID, app);
+// gameHandler(bar, ball, intervalID, app);
 
-function gameHandler(bar, ball, intervalID, app) {
-  const bottom = parseInt(window.getComputedStyle(ball).bottom);
-  if (bottom <= 10 && !isOverlapping(bar, ball)) {
-    clearInterval(intervalID);
-    app.append(gameOver());
-  }
-  return true;
-}
+// function gameHandler(bar, ball, intervalID, app) {
+//   const bottom = parseInt(window.getComputedStyle(ball).bottom);
+//   if (bottom <= 10 && !isOverlapping(bar, ball)) {
+//     clearInterval(intervalID);
+//     app.append(gameOver());
+//   }
+//   return true;
+// }
