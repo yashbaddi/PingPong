@@ -1,7 +1,6 @@
 import { gameOver } from "./Components/gameOver.js";
-import { isOverlapping, linearAnimate } from "./Components/pingpongBall.js";
 import { createPingpongBar } from "./Components/pingpongBar.js";
-import { createDOMElement } from "./utils.js";
+import { createDOMElement, isOverlapping, linearAnimate } from "./utils.js";
 
 const app = document.getElementById("app");
 
@@ -9,15 +8,19 @@ const bar = createPingpongBar();
 
 const ball = createDOMElement("div", ["ball"], [], {});
 
-const intervalID = linearAnimate(ball);
-app.append(bar, ball);
-// gameHandler(bar, ball, intervalID, app);
+const gameHandler = gameClosoure(app, bar, ball);
+linearAnimate(ball, gameHandler);
 
-// function gameHandler(bar, ball, intervalID, app) {
-//   const bottom = parseInt(window.getComputedStyle(ball).bottom);
-//   if (bottom <= 10 && !isOverlapping(bar, ball)) {
-//     clearInterval(intervalID);
-//     app.append(gameOver());
-//   }
-//   return true;
-// }
+app.append(bar, ball);
+
+function gameClosoure(app, bar, ball) {
+  return function (direction, intervalID) {
+    if (!isOverlapping(bar, ball)) {
+      console.log("GAME OVER");
+      clearInterval(intervalID);
+      app.append(gameOver());
+    } else {
+      direction.horizontal = -1;
+    }
+  };
+}
