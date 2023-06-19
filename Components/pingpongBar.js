@@ -1,4 +1,4 @@
-import { createDOMElement } from "../utils.js";
+import { createDOMElement } from "../Services/createDOMElement.js";
 
 export function createPingpongBar(position = "bottom") {
   const bar = createDOMElement("div", ["bar", "bar-" + position], [], {});

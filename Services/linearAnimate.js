@@ -2,8 +2,8 @@ export function linearAnimate(
   div,
   gameHandler,
   interval = 20,
-  speed = 5,
-  speedIncrementRate = 0.0001
+  speed = 4,
+  speedIncrementRate = 0.001
 ) {
   const direction = {
     vertical: 1,
