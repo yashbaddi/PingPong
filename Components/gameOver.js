@@ -5,7 +5,7 @@ export function gameOver() {
     textContent: "Reset Game",
   });
   const gameMessage = createDOMElement("p", ["game-over__message"], [], {
-    textContent: "GameOver",
+    textContent: "Game Over",
   });
   const popupBox = createDOMElement(
     "div",
@@ -13,5 +13,11 @@ export function gameOver() {
     [gameMessage, gameResetBtn]
   );
 
+  gameResetBtn.addEventListener("click", resetGame.bind(null, popupBox));
+
   return popupBox;
+}
+
+function resetGame(box) {
+  box.remove();
 }
