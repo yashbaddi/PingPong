@@ -17,12 +17,13 @@ export function linearAnimate(
 
     speed = speed + speed * speedIncrementRate;
 
-    div.style.left =
-      parseInt(computedStyle.left) + speed * direction.vertical + "px";
-
-    div.style.top =
-      parseInt(computedStyle.top) + speed * direction.horizontal + "px";
+    div.style.left = calcSpeed(computedStyle.left, speed, direction.vertical);
+    div.style.top = calcSpeed(computedStyle.top, speed, direction.horizontal);
   }, interval);
+}
+
+function calcSpeed(initial, speed, direction) {
+  return parseInt(initial) + speed * direction + "px";
 }
 
 function changeDirection(style, direction, intervalID, gameHandler, speed = 2) {
