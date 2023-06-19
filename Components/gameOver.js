@@ -1,4 +1,4 @@
-import { createDOMElement } from "../utils.js";
+import { createDOMElement } from "../Services/createDOMElement.js";
 
 export function gameOver() {
   const gameResetBtn = createDOMElement("button", ["game-over__button"], [], {

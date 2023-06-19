@@ -1,6 +1,8 @@
 import { gameOver } from "./Components/gameOver.js";
 import { createPingpongBar } from "./Components/pingpongBar.js";
-import { createDOMElement, isOverlapping, linearAnimate } from "./utils.js";
+import { createDOMElement } from "./Services/createDOMElement.js";
+import { isOverlapping } from "./Services/isOverlapping.js";
+import { linearAnimate } from "./Services/linearAnimate.js";
 
 const app = document.getElementById("app");
 
