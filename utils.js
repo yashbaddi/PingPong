@@ -46,7 +46,7 @@ export function linearAnimate(
   div,
   gameHandler,
   interval = 20,
-  speed = 3,
+  speed = 5,
   speedIncrementRate = 0.0001
 ) {
   const direction = {
