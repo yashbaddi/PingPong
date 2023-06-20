@@ -8,21 +8,21 @@ const app = document.getElementById("app");
 
 const bar = createPingpongBar();
 
-const ball = createDOMElement("div", ["ball"], [], {});
+const ball = createDOMElement("circle", ["ball"], [], {});
 
-const gameHandler = gameClosoure(app, bar, ball);
-linearAnimate(ball, gameHandler);
+// const gameHandler = gameClosoure(app, bar, ball);
+// linearAnimate(ball, gameHandler);
 
 app.append(bar, ball);
 
-function gameClosoure(app, bar, ball) {
-  return function (direction, intervalID) {
-    if (!isOverlapping(bar, ball)) {
-      console.log("GAME OVER");
-      clearInterval(intervalID);
-      app.append(gameOver());
-    } else {
-      direction.horizontal = -1;
-    }
-  };
-}
+// function gameClosoure(app, bar, ball) {
+//   return function (direction, intervalID) {
+//     if (!isOverlapping(bar, ball)) {
+//       console.log("GAME OVER");
+//       clearInterval(intervalID);
+//       app.append(gameOver());
+//     } else {
+//       direction.horizontal = -1;
+//     }
+//   };
+// }

@@ -1,9 +1,15 @@
 import { createDOMElement } from "../Services/createDOMElement.js";
 
 export function createPingpongBar(position = "bottom") {
-  const bar = createDOMElement("div", ["bar", "bar-" + position], [], {});
+  const bar = createDOMElement("rect", ["bar", "bar-" + position], [], {});
+
+  bar.setAttribute("width", "100");
+  bar.setAttribute("height", "100");
+
   if (position == "bottom") {
     bar.tabIndex = 0;
+    bar.setAttribute("x", 50);
+    bar.setAttribute("y", 0);
     bar.autofocus = true;
     bar.addEventListener("keydown", barEventHandler);
   }
@@ -11,13 +17,13 @@ export function createPingpongBar(position = "bottom") {
 }
 
 function barEventHandler(event) {
-  const computedStyle = window.getComputedStyle(event.target);
-  if (event.key === "ArrowLeft" && parseInt(computedStyle.left) >= 0) {
+  const element = event.target;
+  if (event.key === "ArrowLeft" && parseInt(element.x) >= 0) {
     console.log(event.target.style);
 
-    event.target.style.left = parseInt(computedStyle.left || 0) - 50 + "px";
+    event.target.style.left = parseInt(element.x || 0) - 50 + "px";
   }
-  if (event.key === "ArrowRight" && parseInt(computedStyle.right) >= 0) {
-    event.target.style.left = parseInt(computedStyle.left || 0) + 50 + "px";
+  if (event.key === "ArrowRight" && parseInt(element.x) >= 0) {
+    event.target.style.left = parseInt(element.x || 0) + 50 + "px";
   }
 }

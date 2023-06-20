@@ -19,7 +19,7 @@ body {
 }
 
 .bar{
-    background-color: var(--color-main);
+    fill: var(--color-main);
     width: 12rem;
     height: 0.75rem;
     border-radius: 0.5rem;
@@ -39,7 +39,7 @@ body {
 }
 
 .ball{
-    background-color: var(--color-main);
+    fill: var(--color-main);
     width: 1.5rem;
     height: 1.5rem;
     border-radius: 50%;    
