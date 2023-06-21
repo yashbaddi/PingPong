@@ -37,3 +37,8 @@ function changeDirection(style, direction, intervalID, gameHandler, speed = 2) {
   if (parseInt(style.top) <= speed) direction.horizontal = 1;
   if (parseInt(style.bottom) <= speed) gameHandler(direction, intervalID);
 }
+
+export function resetBall(ball) {
+  ball.style.left = "50%";
+  ball.style.top = "50%";
+}
