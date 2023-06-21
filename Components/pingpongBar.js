@@ -5,12 +5,13 @@ export function createPingpongBar(position = "bottom") {
   if (position == "bottom") {
     bar.tabIndex = 0;
     bar.autofocus = true;
-    bar.addEventListener("keydown", barEventHandler);
+    bar.addEventListener("keydown", barKeyEvent);
+    bar.addEventListener("mousedown", barMouseEvent);
   }
   return bar;
 }
 
-function barEventHandler(event) {
+function barKeyEvent(event) {
   const computedStyle = window.getComputedStyle(event.target);
   if (event.key === "ArrowLeft" && parseInt(computedStyle.left) >= 0) {
     console.log(event.target.style);
@@ -20,4 +21,16 @@ function barEventHandler(event) {
   if (event.key === "ArrowRight" && parseInt(computedStyle.right) >= 0) {
     event.target.style.left = parseInt(computedStyle.left || 0) + 50 + "px";
   }
+}
+
+function barMouseEvent(event) {
+  const bar = event.target;
+  function onMouseMove(event) {
+    bar.style.left = event.pageX + "px";
+    console.log(event.target);
+  }
+  document.addEventListener("mousemove", onMouseMove);
+  bar.addEventListener("mouseup", (event) => {
+    document.removeEventListener("mousemove", onMouseMove);
+  });
 }
