@@ -1,15 +1,12 @@
-import { createDOMElement } from "../Services/createDOMElement.js";
+import { createSVGElement } from "../Services/createSVGElement.js";
 
 export function createPingpongBar(position = "bottom") {
-  const bar = createDOMElement("rect", ["bar", "bar-" + position], [], {});
-
-  bar.setAttribute("width", "100");
-  bar.setAttribute("height", "100");
+  const bar = createSVGElement("rect", ["bar"], [], {});
 
   if (position == "bottom") {
     bar.tabIndex = 0;
-    bar.setAttribute("x", 50);
-    bar.setAttribute("y", 0);
+    bar.setAttribute("x", "50%");
+    bar.setAttribute("y", "93%");
     bar.autofocus = true;
     bar.addEventListener("keydown", barEventHandler);
   }

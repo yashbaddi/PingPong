@@ -1,4 +1,5 @@
 import { gameOver } from "./Components/gameOver.js";
+import { createBall } from "./Components/pingpongBall.js";
 import { createPingpongBar } from "./Components/pingpongBar.js";
 import { createDOMElement } from "./Services/createDOMElement.js";
 import { isOverlapping } from "./Services/isOverlapping.js";
@@ -8,7 +9,7 @@ const app = document.getElementById("app");
 
 const bar = createPingpongBar();
 
-const ball = createDOMElement("circle", ["ball"], [], {});
+const ball = createBall();
 
 // const gameHandler = gameClosoure(app, bar, ball);
 // linearAnimate(ball, gameHandler);
