@@ -1,4 +1,5 @@
 import { createDOMElement } from "../Services/createDOMElement.js";
+import { startGame } from "../index.js";
 import { resetBall } from "./pingpongBall.js";
 import { resetBar } from "./pingpongBar.js";
 
@@ -28,4 +29,5 @@ function resetGame(box, bar, ball) {
   box.remove();
   resetBar(bar);
   resetBall(ball);
+  startGame(ball);
 }

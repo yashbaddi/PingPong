@@ -8,9 +8,12 @@ const app = document.getElementById("app");
 const bar = createPingpongBar();
 
 const ball = createPingpongBall();
+startGame(app, bar, ball);
 
-const gameHandler = gameClosoure(app, bar, ball);
-ballAnimate(ball, gameHandler);
+export function startGame(ball) {
+  const gameHandler = gameClosoure(app, bar, ball);
+  ballAnimate(ball, gameHandler);
+}
 
 app.append(bar, ball);
 
