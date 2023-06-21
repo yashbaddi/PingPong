@@ -1,10 +1,12 @@
+import { createDOMElement } from "../Services/createDOMElement.js";
+
 export function createPingpongBall() {
   const ball = createDOMElement("div", ["ball"], [], {});
   return ball;
 }
 
 export function ballAnimate(
-  div,
+  ball,
   gameHandler,
   interval = 20,
   speed = 4,
@@ -16,14 +18,14 @@ export function ballAnimate(
   };
 
   const intervalID = setInterval(() => {
-    const computedStyle = window.getComputedStyle(div);
+    const computedStyle = window.getComputedStyle(ball);
 
     changeDirection(computedStyle, direction, intervalID, gameHandler);
 
     speed = speed + speed * speedIncrementRate;
 
-    div.style.left = calcSpeed(computedStyle.left, speed, direction.vertical);
-    div.style.top = calcSpeed(computedStyle.top, speed, direction.horizontal);
+    ball.style.left = calcSpeed(computedStyle.left, speed, direction.vertical);
+    ball.style.top = calcSpeed(computedStyle.top, speed, direction.horizontal);
   }, interval);
 }
 
