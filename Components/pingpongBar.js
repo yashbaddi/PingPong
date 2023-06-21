@@ -34,3 +34,7 @@ function barMouseEvent(event) {
     document.removeEventListener("mousemove", onMouseMove);
   });
 }
+
+export function resetBar(bar) {
+  bar.style.left = "50%";
+}
