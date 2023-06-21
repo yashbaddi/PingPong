@@ -3,7 +3,7 @@ import { startGame } from "../index.js";
 import { resetBall } from "./pingpongBall.js";
 import { resetBar } from "./pingpongBar.js";
 
-export function gameOver(intervalID, bar, ball) {
+export function gameOver(intervalID, app, bar, ball) {
   clearInterval(intervalID);
   const gameResetBtn = createDOMElement("button", ["game-over__button"], [], {
     textContent: "Reset Game",
@@ -19,15 +19,15 @@ export function gameOver(intervalID, bar, ball) {
 
   gameResetBtn.addEventListener(
     "click",
-    resetGame.bind(null, popupBox, bar, ball)
+    resetGame.bind(null, popupBox, app, bar, ball)
   );
 
   return popupBox;
 }
 
-function resetGame(box, bar, ball) {
+function resetGame(box, app, bar, ball) {
   box.remove();
   resetBar(bar);
   resetBall(ball);
-  startGame(ball);
+  startGame(app, bar, ball);
 }

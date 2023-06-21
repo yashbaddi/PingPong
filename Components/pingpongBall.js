@@ -26,6 +26,7 @@ export function ballAnimate(
 
     ball.style.left = calcSpeed(computedStyle.left, speed, direction.vertical);
     ball.style.top = calcSpeed(computedStyle.top, speed, direction.horizontal);
+    console.log(ball.style.top, ball.style.left);
   }, interval);
 }
 

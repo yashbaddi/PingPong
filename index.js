@@ -5,14 +5,15 @@ import { isOverlapping } from "./Services/isOverlapping.js";
 
 const app = document.getElementById("app");
 
-const bar = createPingpongBar();
+const mainBar = createPingpongBar();
+const oppositePlayer = createPingpongBar("top");
 
 const ball = createPingpongBall();
-startGame(app, bar, ball);
+startGame(app, mainBar, ball);
 
-export function startGame(ball) {
-  const gameHandler = gameClosoure(app, bar, ball);
-  ballAnimate(ball, gameHandler);
+export function startGame(app, bar, ball) {
+  const bottomHandler = gameClosoure(app, bar, ball);
+  ballAnimate(ball, bottomHandler);
 }
 
 app.append(bar, ball);
@@ -21,7 +22,7 @@ function gameClosoure(app, bar, ball) {
   return function (direction, intervalID) {
     if (!isOverlapping(bar, ball)) {
       console.log("GAME OVER");
-      app.append(gameOver(intervalID, bar, ball));
+      app.append(gameOver(intervalID, app, bar, ball));
     } else {
       direction.horizontal = -1;
     }
