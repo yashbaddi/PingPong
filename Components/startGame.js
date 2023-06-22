@@ -1,7 +1,7 @@
 import { createDOMElement } from "../Services/createDOMElement.js";
-import { startGame } from "../index.js";
+import { gameClosoure } from "../index.js";
 
-export function startGame(intervalID, app, bar, ball) {
+export function startGame(app, bar, ball) {
   const gameMessage = createDOMElement("p", ["game-create__message"], [], {
     textContent: "Ping Pong",
   });
@@ -25,10 +25,11 @@ export function startGame(intervalID, app, bar, ball) {
   const popupBox = createDOMElement(
     "div",
     ["start-game"],
-    [gameMessage, gameCreateBtn, gameJoinButton]
+    [gameMessage, gameCreateBtn, gameCreateBtn]
   );
 
-  gameResetBtn.addEventListener("click", resetGame.bind(null, app, bar, ball));
+  gameCreateBtn.addEventListener("click", setGame.bind(null, app, bar, ball));
+  gameCreateBtn.addEventListener("click", joinGame.bind(null, app, bar, ball));
 
   return popupBox;
 }
@@ -36,5 +37,8 @@ export function startGame(intervalID, app, bar, ball) {
 export function setGame(app, bar, ball) {
   resetBar(bar);
   resetBall(ball);
-  startGame(app, bar, ball);
+  const bottomHandler = gameClosoure(app, mainBar, ball);
+  ballAnimate(ball, bottomHandler);
 }
+
+function joinGame() {}

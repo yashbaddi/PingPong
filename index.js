@@ -2,6 +2,7 @@ import { gameOver } from "./Components/gameOver.js";
 import { ballAnimate, createPingpongBall } from "./Components/pingpongBall.js";
 import { createPingpongBar } from "./Components/pingpongBar.js";
 import { isOverlapping } from "./Services/isOverlapping.js";
+import { startGame } from "./Components/StartGame.js";
 
 const app = document.getElementById("app");
 
@@ -9,16 +10,16 @@ const mainBar = createPingpongBar();
 const oppositePlayer = createPingpongBar("top");
 
 const ball = createPingpongBall();
-startGame(app, mainBar, ball);
+const start = startGame(app, mainBar, ball);
 
-export function startGame(app, mainBar, ball) {
-  const bottomHandler = gameClosoure(app, mainBar, ball);
-  ballAnimate(ball, bottomHandler);
-}
+// export function startGame(app, mainBar, ball) {
+//   const bottomHandler = gameClosoure(app, mainBar, ball);
+//   ballAnimate(ball, bottomHandler);
+// }
 
-app.append(mainBar, oppositePlayer, ball);
+app.append(mainBar, start, oppositePlayer, ball);
 
-function gameClosoure(app, bar, ball) {
+export function gameClosoure(app, bar, ball) {
   return function (direction, intervalID) {
     if (!isOverlapping(bar, ball)) {
       console.log("GAME OVER");
