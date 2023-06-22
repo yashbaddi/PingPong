@@ -5,9 +5,14 @@ import { resetBar } from "./pingpongBar.js";
 
 export function gameOver(intervalID, app, bar, ball) {
   clearInterval(intervalID);
-  const gameResetBtn = createDOMElement("button", ["game-over__button"], [], {
-    textContent: "Reset Game",
-  });
+  const gameResetBtn = createDOMElement(
+    "button",
+    ["button", "game-over__button"],
+    [],
+    {
+      textContent: "Reset Game",
+    }
+  );
   const gameMessage = createDOMElement("p", ["game-over__message"], [], {
     textContent: "Game Over",
   });

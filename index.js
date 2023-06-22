@@ -11,12 +11,12 @@ const oppositePlayer = createPingpongBar("top");
 const ball = createPingpongBall();
 startGame(app, mainBar, ball);
 
-export function startGame(app, bar, ball) {
-  const bottomHandler = gameClosoure(app, bar, ball);
+export function startGame(app, mainBar, ball) {
+  const bottomHandler = gameClosoure(app, mainBar, ball);
   ballAnimate(ball, bottomHandler);
 }
 
-app.append(bar, ball);
+app.append(mainBar, oppositePlayer, ball);
 
 function gameClosoure(app, bar, ball) {
   return function (direction, intervalID) {
