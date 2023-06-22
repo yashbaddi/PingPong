@@ -51,7 +51,7 @@ body {
 
 }
 
-.game-over{
+.popup{
     width: 20rem;
     height: 10rem;
     border: 0.5rem solid;
@@ -67,12 +67,12 @@ body {
     
 }
 
-.game-over__button{
+.button{
     height: 2rem;
     width: 8rem;
 }
 
-.game-over__message{
+.message{
     font-size: 2rem;
     color: var(--color-background);
 

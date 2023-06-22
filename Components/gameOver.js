@@ -1,5 +1,5 @@
 import { createDOMElement } from "../Services/createDOMElement.js";
-import { startGame } from "../index.js";
+import { setGame } from "./StartGame.js";
 import { resetBall } from "./pingpongBall.js";
 import { resetBar } from "./pingpongBar.js";
 
@@ -13,12 +13,17 @@ export function gameOver(intervalID, app, bar, ball) {
       textContent: "Reset Game",
     }
   );
-  const gameMessage = createDOMElement("p", ["game-over__message"], [], {
-    textContent: "Game Over",
-  });
+  const gameMessage = createDOMElement(
+    "p",
+    ["message", "game-over__message"],
+    [],
+    {
+      textContent: "Game Over",
+    }
+  );
   const popupBox = createDOMElement(
     "div",
-    ["game-over"],
+    ["popup"],
     [gameMessage, gameResetBtn]
   );
 
@@ -31,8 +36,5 @@ export function gameOver(intervalID, app, bar, ball) {
 }
 
 function resetGame(box, app, bar, ball) {
-  box.remove();
-  resetBar(bar);
-  resetBall(ball);
-  startGame(app, bar, ball);
+  setGame(box, app, bar, ball);
 }
