@@ -26,13 +26,13 @@ export function startGame(app, bar, ball) {
     ["button,game-join__button"],
     [],
     {
-      textContent: "Create Game",
+      textContent: "Join Game",
     }
   );
   const popupBox = createDOMElement(
     "div",
     ["popup"],
-    [gameMessage, gameCreateBtn, gameCreateBtn]
+    [gameMessage, gameCreateBtn, gameJoinButton]
   );
 
   gameCreateBtn.addEventListener(
