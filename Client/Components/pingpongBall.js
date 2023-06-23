@@ -66,3 +66,8 @@ export function animateBall(ball) {
   }
   animate();
 }
+
+export function setBall(ball, positionTop, positionLeft) {
+  ball.style.top = positionTop;
+  ball.style.left = positionLeft;
+}

@@ -37,3 +37,7 @@ function barMouseEvent(event) {
 export function resetBar(bar) {
   bar.style.left = "50%";
 }
+
+export function setBar(bar, positionX) {
+  bar.style.left = positionX;
+}
