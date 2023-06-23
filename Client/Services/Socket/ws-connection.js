@@ -25,3 +25,5 @@ ws.on("message", (data) => {
   if ((response.type = "over")) {
   }
 });
+
+export default ws;

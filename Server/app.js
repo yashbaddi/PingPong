@@ -21,11 +21,16 @@ wsServer.on("connection", (connection) => {
 
     if ((request.type = "create")) {
       const id = Date.now() + request.clientID;
-      games[id] = {
+      const game = {
         players: [request.clientID],
+        ball: {
+          top: "560px",
+          left: "560px",
+        },
       };
 
       game[request.clientID] = request.position;
+      games[id] = game;
 
       const payload = {
         type: "create",
