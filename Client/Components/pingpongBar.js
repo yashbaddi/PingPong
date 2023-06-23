@@ -1,4 +1,5 @@
 import { createDOMElement } from "../Services/createDOMElement.js";
+import { updateBarPos } from "../Services/Socket/requests.js";
 
 export function createPingpongBar(position = "bottom") {
   const bar = createDOMElement("div", ["bar", "bar-" + position], [], {});

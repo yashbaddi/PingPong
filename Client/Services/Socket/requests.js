@@ -7,7 +7,6 @@ export function createGame() {
     position: "560px",
   };
   wsClient.send(JSON.stringify(payload));
-  return gameID;
 }
 
 export function joinGame(id) {
