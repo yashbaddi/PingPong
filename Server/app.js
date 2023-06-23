@@ -12,7 +12,7 @@ wsServer.on("connection", (connection) => {
       type: "open",
       clientID: id,
     };
-    ws.send(JSON.stringify(payload));
+    connection.send(JSON.stringify(payload));
   });
 
   connection.on("messsage", (data) => {
@@ -32,7 +32,7 @@ wsServer.on("connection", (connection) => {
         gameID: id,
       };
 
-      ws.send(JSON.stringify(payload));
+      connection.send(JSON.stringify(payload));
     }
 
     if ((request.type = "join")) {
@@ -45,11 +45,25 @@ wsServer.on("connection", (connection) => {
         game: games[request.gameID],
       };
 
-      ws.send(JSON.stringify(payload));
+      connection.send(JSON.stringify(payload));
+      broadcastState();
     }
 
     if ((request.type = "updatePos")) {
       games[request.gameID][request.clientID] = request.position;
     }
   });
+
+  function broadcastState() {
+    for (let game of games) {
+      const plyload = {
+        type: "updateState",
+        game: game,
+      };
+      game.players.forEach((clientID) => {
+        clientConnections[clientID].send(JSON.stringify(payload));
+      });
+    }
+    setTimeout(broadcastState, 500);
+  }
 });
