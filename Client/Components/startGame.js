@@ -1,9 +1,9 @@
+import { createGame, joinGame } from "../Services/Socket/requests.js";
 import { createDOMElement } from "../Services/createDOMElement.js";
-import { gameClosoure } from "../index.js";
 import { ballAnimate, resetBall } from "./pingpongBall.js";
 import { resetBar } from "./pingpongBar.js";
 
-export function startGame(app, bar, ball) {
+export function startGameElement() {
   const gameMessage = createDOMElement(
     "p",
     ["message", "game-create__message"],
@@ -15,15 +15,15 @@ export function startGame(app, bar, ball) {
 
   const gameCreateBtn = createDOMElement(
     "button",
-    ["button,game-create__button"],
+    ["button", "game-create__button"],
     [],
     {
       textContent: "Create Game",
     }
   );
-  const gameJoinButton = createDOMElement(
+  const gameJoinBtn = createDOMElement(
     "button",
-    ["button,game-join__button"],
+    ["button", "game-join__button"],
     [],
     {
       textContent: "Join Game",
@@ -32,14 +32,14 @@ export function startGame(app, bar, ball) {
   const popupBox = createDOMElement(
     "div",
     ["popup"],
-    [gameMessage, gameCreateBtn, gameJoinButton]
+    [gameMessage, gameCreateBtn, gameJoinBtn]
   );
 
   gameCreateBtn.addEventListener(
     "click",
-    setGame.bind(null, popupBox, app, bar, ball)
+    createGameElement.bind(null, popupBox)
   );
-  gameCreateBtn.addEventListener("click", joinGame.bind(null, app, bar, ball));
+  gameJoinBtn.addEventListener("click", joinGameElement.bind(null, popupBox));
 
   return popupBox;
 }
@@ -48,8 +48,43 @@ export function setGame(box, app, bar, ball) {
   box.remove();
   resetBar(bar);
   resetBall(ball);
-  const bottomHandler = gameClosoure(app, bar, ball);
-  ballAnimate(ball, bottomHandler);
 }
 
-function joinGame() {}
+function joinGameElement(box) {
+  box.innerHTML = "";
+  const inputGameID = createDOMElement("input", ["input", "input__join"], [], {
+    type: "text",
+  });
+  const gameJoinButton = createDOMElement(
+    "button",
+    ["button,game-join__button"],
+    [],
+    {
+      textContent: "Join Game",
+    }
+  );
+  box.append(inputElement, gameJoinButton);
+  gameJoinButton.addEventListener(
+    "click",
+    joinGameHandler.bind(null, box, inputGameID.value)
+  );
+}
+
+function joinGameHandler(box, id) {
+  box.remove();
+  joinGame(id);
+}
+
+function createGameElement(box) {
+  box.innerHTML = "";
+  const id = createGame();
+  const message = createDOMElement(
+    "p",
+    ["message", "game-create__message"],
+    [],
+    {
+      textContent: "Game Join ID:" + id.toString(),
+    }
+  );
+  box.append(message);
+}
