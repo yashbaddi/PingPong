@@ -1,4 +1,5 @@
 import { createDOMElement } from "../Services/createDOMElement.js";
+import { boolRandom, getRandom } from "../Services/getRandom.js";
 
 export function createPingpongBall() {
   const ball = createDOMElement("div", ["ball"], [], {});
@@ -16,6 +17,7 @@ export function ballAnimate(
     vertical: 1,
     horizontal: 1,
   };
+  console.log(direction);
 
   const intervalID = setInterval(() => {
     const computedStyle = window.getComputedStyle(ball);
@@ -44,4 +46,23 @@ function changeDirection(style, direction, intervalID, gameHandler, speed = 2) {
 export function resetBall(ball) {
   ball.style.left = "50%";
   ball.style.top = "50%";
+}
+
+export function animateBall(ball) {
+  const direction = {
+    vertical: 1,
+    horizontal: 1,
+  };
+  speed = 10;
+  speedIncrementRate = 0.001;
+
+  function animate() {
+    const computedStyle = window.getComputedStyle(ball);
+    changeDirection(computedStyle, direction, intervalID, gameHandler);
+    speed = speed + speed * speedIncrementRate;
+    ball.style.left = calcSpeed(computedStyle.left, speed, direction.vertical);
+    ball.style.top = calcSpeed(computedStyle.top, speed, direction.horizontal);
+    requestAnimationFrame(animate);
+  }
+  animate();
 }
