@@ -22,12 +22,12 @@ wsServer.on("connection", (connection) => {
     if ((request.type = "create")) {
       const id = Date.now() + request.clientID;
       games[id] = {
-        player1: request.clientID,
+        players: [request.clientID],
       };
 
       game[request.clientID] = request.position;
 
-      const payLoad = {
+      const payload = {
         type: "create",
         gameID: id,
       };
@@ -37,10 +37,10 @@ wsServer.on("connection", (connection) => {
 
     if ((request.type = "join")) {
       const game = games[request.gameID];
-      game.player2 = request.clientID;
+      game.players.push(request.clientID);
       game[request.clientID] = request.position;
 
-      const payLoad = {
+      const payload = {
         type: "play",
         game: games[request.gameID],
       };
