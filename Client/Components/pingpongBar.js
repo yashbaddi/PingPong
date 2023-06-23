@@ -21,6 +21,7 @@ function barKeyEvent(event) {
   }
   if (event.key === "ArrowRight" && parseInt(computedStyle.right) >= 0) {
     event.target.style.left = parseInt(computedStyle.left || 0) + 50 + "px";
+    updateBarPos(event.target.style.left);
   }
 }
 

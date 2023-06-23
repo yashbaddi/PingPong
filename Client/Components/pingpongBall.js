@@ -1,5 +1,4 @@
 import { createDOMElement } from "../Services/createDOMElement.js";
-import { boolRandom, getRandom } from "../Services/getRandom.js";
 
 export function createPingpongBall() {
   const ball = createDOMElement("div", ["ball"], [], {});

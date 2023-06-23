@@ -4,6 +4,7 @@ export function createGame() {
   const payload = {
     type: "create",
     clientID: clientID,
+    position: "560px",
   };
   wsClient.send(JSON.stringify(payload));
   return gameID;
@@ -14,6 +15,7 @@ export function joinGame(id) {
     type: "join",
     clientID: clientID,
     gameID: id,
+    position: "560px",
   };
   wsClient.send(JSON.stringify(payload));
 }
