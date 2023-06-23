@@ -19,6 +19,7 @@ wsServer.on("connection", (connection) => {
 
     if (request.type === "create") {
       const id = Date.now() + request.clientID;
+
       const game = {
         players: [request.clientID],
         ball: {
@@ -40,6 +41,7 @@ wsServer.on("connection", (connection) => {
 
     if (request.type === "join") {
       const game = games[request.gameID];
+
       game.players.push(request.clientID);
       game[request.clientID] = request.position;
 
@@ -58,8 +60,8 @@ wsServer.on("connection", (connection) => {
   });
 
   function broadcastState() {
-    for (let game of games) {
-      const plyload = {
+    for (let game of Object.values(games)) {
+      const payload = {
         type: "updateState",
         game: game,
       };

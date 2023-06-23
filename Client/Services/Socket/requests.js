@@ -12,6 +12,7 @@ export function createGame() {
 export function joinGame(id) {
   const payload = {
     type: "join",
+    clientID: clientID,
     gameID: id,
   };
   wsClient.send(JSON.stringify(payload));

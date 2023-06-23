@@ -17,6 +17,7 @@ function barKeyEvent(event) {
     console.log(event.target.style);
 
     event.target.style.left = parseInt(computedStyle.left || 0) - 50 + "px";
+    updateBarPos(event.target.style.left);
   }
   if (event.key === "ArrowRight" && parseInt(computedStyle.right) >= 0) {
     event.target.style.left = parseInt(computedStyle.left || 0) + 50 + "px";
@@ -27,6 +28,7 @@ function barMouseEvent(event) {
   const bar = event.target;
   function onMouseMove(event) {
     bar.style.left = event.pageX + "px";
+    updateBarPos(event.target.style.left);
   }
   document.addEventListener("mousemove", onMouseMove);
   bar.addEventListener("mouseup", (event) => {

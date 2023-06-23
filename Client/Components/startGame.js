@@ -55,7 +55,7 @@ function joinGameElement(box) {
   const inputGameID = createDOMElement("input", ["input", "input__join"], [], {
     type: "text",
   });
-  const gameJoinButton = createDOMElement(
+  const gameJoinBtn = createDOMElement(
     "button",
     ["button,game-join__button"],
     [],
@@ -63,16 +63,16 @@ function joinGameElement(box) {
       textContent: "Join Game",
     }
   );
-  box.append(inputElement, gameJoinButton);
-  gameJoinButton.addEventListener(
+  box.append(inputGameID, gameJoinBtn);
+  gameJoinBtn.addEventListener(
     "click",
-    joinGameHandler.bind(null, box, inputGameID.value)
+    joinGameHandler.bind(null, box, inputGameID)
   );
 }
 
-function joinGameHandler(box, id) {
+function joinGameHandler(box, input) {
   box.remove();
-  joinGame(id);
+  joinGame(input.value);
 }
 
 function createGameElement(box) {
