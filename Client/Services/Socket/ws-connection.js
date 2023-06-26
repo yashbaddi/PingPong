@@ -1,11 +1,12 @@
 // import WebSocket from "ws";
 
+import { createPingpongBall, setBall } from "../../Components/pingpongBall.js";
 import { createPingpongBar, setBar } from "../../Components/pingpongBar.js";
 
 const wsClient = new WebSocket("ws://localhost:8080");
 export let clientID, gameID, oppositePlayerID;
 
-const barLists = {};
+let mainPlayerPaddle, oppositePlayerPaddle, ball;
 
 wsClient.onopen = (ws) => {
   console.log("Connection Sucess");
@@ -19,12 +20,12 @@ wsClient.onmessage = (message) => {
   }
   if (response.type === "create") {
     gameID = response.gameID;
-    barLists["mainPlayer"] = createPingpongBar();
+    mainPlayerPaddle = createPingpongBar();
   }
 
   if (response.type === "join") {
     gameID = response.gameID;
-    barLists["mainPlayer"] = createPingpongBar();
+    mainPlayerPaddle = createPingpongBar();
   }
 
   if (response.type === "play") {
@@ -34,16 +35,16 @@ wsClient.onmessage = (message) => {
     oppositePlayerID = Object.values(response.game.players).filter(
       (player) => player !== clientID
     );
-    barLists["oppositePlayer"] = createPingpongBar("top");
-    Object.values(barLists).forEach((bar) => {
-      app.append(bar);
-    });
+    oppositePlayerPaddle = createPingpongBar("top");
+    ball = createPingpongBall();
+    app.append(mainPlayerPaddle, oppositePlayerPaddle, ball);
   }
 
   if (response.type === "updateState") {
     const game = response.game;
 
-    setBar(barLists["oppositePlayer"], game[oppositePlayerID]);
+    setBar(oppositePlayerPaddle, game[oppositePlayerID]);
+    setBall(ball, game.ball.top, game.ball.left);
   }
 
   if (response.type === "over") {

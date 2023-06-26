@@ -1,4 +1,5 @@
 import { WebSocketServer } from "ws";
+import { ballAnimate } from "./Services/ballAnimation.js";
 
 const wsServer = new WebSocketServer({ port: 8080 });
 const clientConnections = {};
@@ -67,6 +68,7 @@ wsServer.on("connection", (connection) => {
 
   function broadcastState() {
     for (let game of Object.values(games)) {
+      ballAnimate(game);
       const payload = {
         type: "updateState",
         game: game,
@@ -75,6 +77,6 @@ wsServer.on("connection", (connection) => {
         clientConnections[clientID].send(JSON.stringify(payload));
       });
     }
-    setTimeout(broadcastState, 500);
+    setTimeout(broadcastState, 50);
   }
 });
