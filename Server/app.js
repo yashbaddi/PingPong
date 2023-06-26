@@ -44,13 +44,19 @@ wsServer.on("connection", (connection) => {
 
       game.players.push(request.clientID);
       game[request.clientID] = request.position;
-
-      const payload = {
-        type: "play",
-        game: games[request.gameID],
+      const payloadJoin = {
+        type: "join",
+        clientID: request.clientID,
+        gameID: request.gameID,
       };
-
-      connection.send(JSON.stringify(payload));
+      connection.send(JSON.stringify(payloadJoin));
+      const payloadPlay = {
+        type: "play",
+        game: game,
+      };
+      Object.values(clientConnections).forEach((ws) =>
+        ws.send(JSON.stringify(payloadPlay))
+      );
       broadcastState();
     }
 

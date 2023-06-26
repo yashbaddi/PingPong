@@ -1,5 +1,6 @@
 import wsClient from "./ws-connection.js";
 import { clientID, gameID } from "./ws-connection.js";
+
 export function createGame() {
   const payload = {
     type: "create",

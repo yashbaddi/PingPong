@@ -30,7 +30,8 @@ function barMouseEvent(event) {
   const bar = event.target;
   function onMouseMove(event) {
     bar.style.left = event.pageX + "px";
-    updateBarPos(event.target.style.left);
+    console.log(bar.style.left);
+    updateBarPos(bar.style.left);
   }
   document.addEventListener("mousemove", onMouseMove);
   bar.addEventListener("mouseup", (event) => {
