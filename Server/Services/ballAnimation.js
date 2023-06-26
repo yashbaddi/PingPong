@@ -1,4 +1,4 @@
-let skipPixels = 4;
+let skipPixels = 10;
 const IncrRate = 0.001;
 const direction = {
   vertical: 1,
@@ -8,7 +8,7 @@ const direction = {
 export function ballAnimate(game) {
   changeDirection(game.ball, direction);
 
-  skipPixels = skipPixels + skipPixels * IncrRate;
+  // skipPixels = skipPixels + skipPixels * IncrRate;
 
   game.ball.left = calcSpeed(game.ball.left, skipPixels, direction.vertical);
 
@@ -20,8 +20,8 @@ function calcSpeed(initial, speed, direction) {
 }
 
 function changeDirection(ball, direction) {
-  if (parseInt(ball.left) <= 2) direction.vertical = 1;
-  if (parseInt(ball.left) > 1180) direction.vertical = -1;
-  if (parseInt(ball.top) <= 2) direction.horizontal = 1;
-  if (parseInt(ball.top) > 1180) direction.horizontal = -1;
+  if (parseInt(ball.left) <= 5) direction.vertical = 1;
+  if (parseInt(ball.left) > 1430) direction.vertical = -1;
+  if (parseInt(ball.top) <= 5) direction.horizontal = 1;
+  if (parseInt(ball.top) > 760) direction.horizontal = -1;
 }

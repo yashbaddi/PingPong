@@ -1,6 +1,5 @@
-function animate(draw, duration = 10, timing = linear) {
-  let start = performance.now();
-
+let start = performance.now();
+export function animate(draw, duration = 10, timing = linear) {
   requestAnimationFrame(function animate(time) {
     // timeFraction goes from 0 to 1
     let timeFraction = (time - start) / duration;

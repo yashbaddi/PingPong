@@ -1,3 +1,4 @@
+import { animate } from "../Services/animate.js";
 import { createDOMElement } from "../Services/createDOMElement.js";
 
 export function createPingpongBall() {
@@ -67,6 +68,8 @@ export function animateBall(ball) {
 }
 
 export function setBall(ball, positionTop, positionLeft) {
+  // animate(() => {
   ball.style.top = positionTop;
   ball.style.left = positionLeft;
+  // }, 1);
 }

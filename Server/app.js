@@ -77,6 +77,8 @@ wsServer.on("connection", (connection) => {
         clientConnections[clientID].send(JSON.stringify(payload));
       });
     }
-    setTimeout(broadcastState, 50);
+    if (connection.readyState === 1) {
+      setTimeout(broadcastState, 50);
+    }
   }
 });
