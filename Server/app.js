@@ -33,6 +33,7 @@ wsServer.on("connection", (connection) => {
           },
         },
         paddle: {},
+        gameOver: false,
       };
 
       games[id] = game;
@@ -79,6 +80,19 @@ wsServer.on("connection", (connection) => {
         },
       };
 
+      const oppositePlayerID = game.players.filter(
+        (player) => player !== request.clientID
+      )[0];
+      clientConnections[oppositePlayerID].send(JSON.stringify(payload));
+    }
+
+    if (request.type === "gameOver") {
+      const game = games[request.gameID];
+
+      const payload = {
+        type: "gameOver",
+      };
+      game.gameOver = true;
       const oppositePlayerID = game.players.filter(
         (player) => player !== request.clientID
       )[0];

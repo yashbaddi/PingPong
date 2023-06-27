@@ -31,3 +31,13 @@ export function updatePos() {
   };
   wsClient.send(JSON.stringify(payload));
 }
+
+export function gameOver() {
+  updatePos();
+  const payload = {
+    type: "gameOver",
+    clientID: clientID,
+    gameID: gameID,
+  };
+  wsClient.send(JSON.stringify(payload));
+}
