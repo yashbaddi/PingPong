@@ -24,12 +24,18 @@ wsServer.on("connection", (connection) => {
       const game = {
         players: [request.clientID],
         ball: {
-          top: "560px",
-          left: "560px",
+          paddlePos: {
+            top: "560px",
+            left: "560px",
+          },
+          direction: {
+            horizontal: 1,
+            vertical: 1,
+          },
         },
       };
 
-      game[request.clientID] = request.position;
+      game[request.clientID] = request.paddlePos;
       games[id] = game;
 
       const payload = {
@@ -44,7 +50,7 @@ wsServer.on("connection", (connection) => {
       const game = games[request.gameID];
 
       game.players.push(request.clientID);
-      game[request.clientID] = request.position;
+      game[request.clientID] = request.paddlePos;
       const payloadJoin = {
         type: "join",
         clientID: request.clientID,
@@ -62,23 +68,17 @@ wsServer.on("connection", (connection) => {
     }
 
     if (request.type === "updatePos") {
-      games[request.gameID][request.clientID] = request.position;
-    }
-  });
+      games[request.gameID][request.clientID] = request.paddlePos;
+      games[request.gameID]["ball"] = request.ballPos;
 
-  function broadcastState() {
-    for (let game of Object.values(games)) {
-      ballAnimate(game);
       const payload = {
         type: "updateState",
         game: game,
       };
-      game.players.forEach((clientID) => {
-        clientConnections[clientID].send(JSON.stringify(payload));
-      });
+      const oppositePlayerID = game.players.filter(
+        (player) => player !== request.clientID
+      )[0];
+      clientConnections[oppositePlayerID].send(JSON.stringify(payload));
     }
-    if (connection.readyState === 1) {
-      setTimeout(broadcastState, 50);
-    }
-  }
+  });
 });

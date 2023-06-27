@@ -1,4 +1,4 @@
-let skipPixels = 10;
+let skipPixels = 50;
 const IncrRate = 0.001;
 const direction = {
   vertical: 1,
@@ -16,7 +16,7 @@ export function ballAnimate(game) {
 }
 
 function calcSpeed(initial, speed, direction) {
-  return Math.ceil(parseInt(initial) + speed * direction) + "px";
+  return Math.ceil(parseInt(initial) + speed * direction);
 }
 
 function changeDirection(ball, direction) {

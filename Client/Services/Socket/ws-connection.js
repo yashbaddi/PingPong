@@ -44,7 +44,7 @@ wsClient.onmessage = (message) => {
     const game = response.game;
 
     setBar(oppositePlayerPaddle, game[oppositePlayerID]);
-    setBall(ball, game.ball.top, game.ball.left);
+    setBall(ball, game.ball.position, game.ball.direction);
   }
 
   if (response.type === "over") {

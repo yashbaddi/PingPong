@@ -20,12 +20,13 @@ export function joinGame(id) {
   wsClient.send(JSON.stringify(payload));
 }
 
-export function updateBarPos(left) {
+export function updatePos(paddlePos, ballPos) {
   const payload = {
     type: "updatePos",
     clientID: clientID,
     gameID: gameID,
-    position: left,
+    paddlePos: paddlePos,
+    ballPos: ballPos,
   };
   wsClient.send(JSON.stringify(payload));
 }
