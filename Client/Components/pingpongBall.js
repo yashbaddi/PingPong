@@ -1,5 +1,5 @@
 import { createDOMElement } from "../Services/createDOMElement.js";
-import { game } from "../store/gameStatus.js";
+import { game } from "../Store/gameStatus.js";
 
 export function createPingpongBall() {
   const ballDOM = createDOMElement("div", ["ball"], [], {});

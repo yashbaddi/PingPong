@@ -1,6 +1,6 @@
 import { createDOMElement } from "../Services/createDOMElement.js";
-import { updateBarPos, updatePos } from "../Services/Socket/requests.js";
-import { game } from "../store/gameStatus.js";
+import { updatePos } from "../Services/Socket/requests.js";
+import { game } from "../Store/gameStatus.js";
 
 export function createPingpongBar(position = "bottom") {
   const bar = createDOMElement("div", ["bar", "bar-" + position], [], {});

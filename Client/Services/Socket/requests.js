@@ -1,4 +1,4 @@
-import { game } from "../../store/gameStatus.js";
+import { game } from "../../Store/gameStatus.js";
 import wsClient from "./ws-connection.js";
 import { clientID, gameID } from "./ws-connection.js";
 

@@ -31,11 +31,10 @@ wsServer.on("connection", (connection) => {
             horizontal: 1,
             vertical: 1,
           },
-          paddle: {},
         },
+        paddle: {},
       };
 
-      game.paddle[request.clientID] = 560;
       games[id] = game;
 
       const payload = {
@@ -50,7 +49,6 @@ wsServer.on("connection", (connection) => {
       const game = games[request.gameID];
 
       game.players.push(request.clientID);
-      game.paddle[request.clientID] = 560;
 
       const payloadJoin = {
         type: "join",

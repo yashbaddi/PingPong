@@ -1,6 +1,5 @@
 import { createGame, joinGame } from "../Services/Socket/requests.js";
 import { createDOMElement } from "../Services/createDOMElement.js";
-import { ballAnimate, resetBall } from "./pingpongBall.js";
 import { resetBar } from "./pingpongBar.js";
 
 export function startGameElement() {
