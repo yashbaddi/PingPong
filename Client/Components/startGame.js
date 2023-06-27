@@ -44,10 +44,9 @@ export function startGameElement() {
   return popupBox;
 }
 
-export function setGame(box, app, bar, ball) {
+export function setGame(box, app, bar) {
   box.remove();
   resetBar(bar);
-  resetBall(ball);
 }
 
 function joinGameElement(box) {

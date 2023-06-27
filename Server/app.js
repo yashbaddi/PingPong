@@ -1,5 +1,4 @@
 import { WebSocketServer } from "ws";
-import { ballAnimate } from "./Services/ballAnimation.js";
 
 const wsServer = new WebSocketServer({ port: 8080 });
 const clientConnections = {};
@@ -24,18 +23,19 @@ wsServer.on("connection", (connection) => {
       const game = {
         players: [request.clientID],
         ball: {
-          paddlePos: {
-            top: "560px",
-            left: "560px",
+          pos: {
+            top: 560,
+            left: 560,
           },
           direction: {
             horizontal: 1,
             vertical: 1,
           },
+          paddle: {},
         },
       };
 
-      game[request.clientID] = request.paddlePos;
+      game.paddle[request.clientID] = 560;
       games[id] = game;
 
       const payload = {
@@ -50,13 +50,15 @@ wsServer.on("connection", (connection) => {
       const game = games[request.gameID];
 
       game.players.push(request.clientID);
-      game[request.clientID] = request.paddlePos;
+      game.paddle[request.clientID] = 560;
+
       const payloadJoin = {
         type: "join",
         clientID: request.clientID,
         gameID: request.gameID,
       };
       connection.send(JSON.stringify(payloadJoin));
+
       const payloadPlay = {
         type: "play",
         game: game,
@@ -64,17 +66,21 @@ wsServer.on("connection", (connection) => {
       Object.values(clientConnections).forEach((ws) =>
         ws.send(JSON.stringify(payloadPlay))
       );
-      broadcastState();
     }
 
     if (request.type === "updatePos") {
-      games[request.gameID][request.clientID] = request.paddlePos;
-      games[request.gameID]["ball"] = request.ballPos;
+      const game = games[request.gameID];
+      game.paddle[request.clientID] = request.game.paddlePos;
+      game.ball = request.game.ball;
 
       const payload = {
         type: "updateState",
-        game: game,
+        game: {
+          ball: request.game.ball,
+          paddlePos: request.game.paddlePos,
+        },
       };
+
       const oppositePlayerID = game.players.filter(
         (player) => player !== request.clientID
       )[0];

@@ -1,3 +1,4 @@
+import { game } from "../../store/gameStatus.js";
 import wsClient from "./ws-connection.js";
 import { clientID, gameID } from "./ws-connection.js";
 
@@ -5,7 +6,6 @@ export function createGame() {
   const payload = {
     type: "create",
     clientID: clientID,
-    position: "560px",
   };
   wsClient.send(JSON.stringify(payload));
 }
@@ -15,18 +15,19 @@ export function joinGame(id) {
     type: "join",
     clientID: clientID,
     gameID: id,
-    position: "560px",
   };
   wsClient.send(JSON.stringify(payload));
 }
 
-export function updatePos(paddlePos, ballPos) {
+export function updatePos() {
   const payload = {
     type: "updatePos",
     clientID: clientID,
     gameID: gameID,
-    paddlePos: paddlePos,
-    ballPos: ballPos,
+    game: {
+      ball: game.ball,
+      paddlePos: game.paddle.mainPaddle,
+    },
   };
   wsClient.send(JSON.stringify(payload));
 }
