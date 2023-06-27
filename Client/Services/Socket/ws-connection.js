@@ -1,6 +1,6 @@
 // import WebSocket from "ws";
 
-import { GameOverDOM, gameOverDOM } from "../../Components/gameOver.js";
+import { GameOverDOM } from "../../Components/gameOver.js";
 import {
   animateBall,
   createPingpongBall,

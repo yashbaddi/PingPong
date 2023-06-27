@@ -1,8 +1,8 @@
 export const game = {
   ball: {
     pos: {
-      x: 560,
-      y: 560,
+      x: window.innerWidth / 2,
+      y: window.innerHeight / 2,
     },
     direction: {
       horizontal: 1,
@@ -10,8 +10,8 @@ export const game = {
     },
   },
   paddle: {
-    mainPaddle: 560,
-    oppositePaddle: 560,
+    mainPaddle: window.innerWidth / 2,
+    oppositePaddle: window.innerWidth / 2,
   },
 };
 

@@ -1,5 +1,6 @@
-import { updatePos } from "../Services/Socket/requests.js";
+import { gameOver, updatePos } from "../Services/Socket/requests.js";
 import { createDOMElement } from "../Services/createDOMElement.js";
+import { isGameOver } from "../Services/isGameOver.js";
 import { game } from "../Store/gameStatus.js";
 
 export function createPingpongBall() {
@@ -8,24 +9,25 @@ export function createPingpongBall() {
   return ballDOM;
 }
 
-function borderColisionHandler(gameHandler = () => {}) {
+function borderColisionHandler() {
   const containerWidth = window.innerWidth - 5;
   const containerHeight = window.innerHeight - 5;
   console.log(game.ball.pos);
   if (game.ball.pos.y <= 5 || game.ball.pos.y >= containerHeight) {
     //Horizontal Handle
     console.log(" vertical Handle");
+    if (game.ball.pos.y >= containerHeight && isGameOver()) {
+      gameOver();
+    }
+
     game.ball.direction.vertical *= -1;
-    updatePos();
   }
   if (game.ball.pos.x <= 5 || game.ball.pos.x >= containerWidth) {
     //Vertical Handle
     console.log("horizontal Handle");
-    gameHandler();
-
     game.ball.direction.horizontal *= -1;
-    updatePos();
   }
+  updatePos();
 }
 
 export function setBall(ballDOM, newBall) {
