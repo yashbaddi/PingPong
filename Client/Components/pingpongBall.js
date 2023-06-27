@@ -1,4 +1,3 @@
-import { animate } from "../Services/animate.js";
 import { createDOMElement } from "../Services/createDOMElement.js";
 
 const ball = {
@@ -13,6 +12,7 @@ const ball = {
 };
 export function createPingpongBall() {
   const ballDOM = createDOMElement("div", ["ball"], [], {});
+  updateBallDOM(ballDOM);
   return ballDOM;
 }
 
