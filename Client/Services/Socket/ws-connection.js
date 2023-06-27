@@ -1,5 +1,6 @@
 // import WebSocket from "ws";
 
+import { GameOverDOM, gameOverDOM } from "../../Components/gameOver.js";
 import {
   animateBall,
   createPingpongBall,
@@ -53,7 +54,10 @@ wsClient.onmessage = (message) => {
     setBall(ball, responseGame.ball);
   }
 
-  if (response.type === "over") {
+  if (response.type === "gameOver") {
+    const app = document.getElementById("app");
+    app.innerHTML = "";
+    app.append(GameOverDOM("You Have Won"));
   }
 };
 

@@ -1,3 +1,4 @@
+import { GameOverDOM } from "../../Components/gameOver.js";
 import { game } from "../../Store/gameStatus.js";
 import wsClient from "./ws-connection.js";
 import { clientID, gameID } from "./ws-connection.js";
@@ -34,6 +35,7 @@ export function updatePos() {
 
 export function gameOver() {
   updatePos();
+  GameOverDOM("You Have Lost");
   const payload = {
     type: "gameOver",
     clientID: clientID,

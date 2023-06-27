@@ -1,36 +1,35 @@
 import { createDOMElement } from "../Services/createDOMElement.js";
 import { setGame } from "./StartGame.js";
-import { resetBall } from "./pingpongBall.js";
-import { resetBar } from "./pingpongBar.js";
 
-export function gameOver(intervalID, app, bar, ball) {
-  clearInterval(intervalID);
-  const gameResetBtn = createDOMElement(
-    "button",
-    ["button", "game-over__button"],
-    [],
-    {
-      textContent: "Reset Game",
-    }
-  );
+export function GameOverDOM(message) {
+  const app = document.getElementById("app");
+  app.innerHTML = "";
+  app.append(gameOverPopupBox(message));
+}
+
+function gameOverPopupBox(message) {
+  // const gameResetBtn = createDOMElement(
+  //   "button",
+  //   ["button", "game-over__button"],
+  //   [],
+  //   {
+  //     textContent: "Reset Game",
+  //   }
+  // );
   const gameMessage = createDOMElement(
     "p",
     ["message", "game-over__message"],
     [],
     {
-      textContent: "Game Over",
+      textContent: message,
     }
   );
-  const popupBox = createDOMElement(
-    "div",
-    ["popup"],
-    [gameMessage, gameResetBtn]
-  );
+  const popupBox = createDOMElement("div", ["popup"], [gameMessage]);
 
-  gameResetBtn.addEventListener(
-    "click",
-    resetGame.bind(null, popupBox, app, bar, ball)
-  );
+  // gameResetBtn.addEventListener(
+  //   "click",
+  //   resetGame.bind(null, popupBox, app, bar, ball)
+  // );
 
   return popupBox;
 }
