@@ -1,3 +1,4 @@
+import { updatePos } from "../Services/Socket/requests.js";
 import { createDOMElement } from "../Services/createDOMElement.js";
 import { game } from "../Store/gameStatus.js";
 
@@ -8,16 +9,22 @@ export function createPingpongBall() {
 }
 
 function borderColisionHandler(gameHandler = () => {}) {
-  const windowWidth = window.innerWidth;
-  const windowHeight = window.innerHeight;
-  if (game.ball.pos.y <= 5 || game.ball.pos >= windowHeight - 5) {
+  const containerWidth = window.innerWidth - 5;
+  const containerHeight = window.innerHeight - 5;
+  console.log(game.ball.pos);
+  if (game.ball.pos.y <= 5 || game.ball.pos.y >= containerHeight) {
     //Horizontal Handle
-    gameHandler();
-    game.ball.direction.horizontal *= -1;
-  }
-  if (game.ball.pos.x <= 5 || game.ball.pos >= windowWidth - 5) {
-    //Vertical Handle
+    console.log(" vertical Handle");
     game.ball.direction.vertical *= -1;
+    updatePos();
+  }
+  if (game.ball.pos.x <= 5 || game.ball.pos.x >= containerWidth) {
+    //Vertical Handle
+    console.log("horizontal Handle");
+    gameHandler();
+
+    game.ball.direction.horizontal *= -1;
+    updatePos();
   }
 }
 
@@ -33,9 +40,10 @@ function updateBallDOM(ballDOM) {
 }
 
 export function animateBall(ballDOM) {
-  game.ball.pos.x += 5 * game.ball.direction.vertical;
-  game.ball.pos.y += 5 * game.ball.direction.horizontal;
-  updateBallDOM(ballDOM);
   borderColisionHandler();
+
+  game.ball.pos.x += 3 * game.ball.direction.horizontal;
+  game.ball.pos.y += 3 * game.ball.direction.vertical;
+  updateBallDOM(ballDOM);
   requestAnimationFrame(animateBall.bind(this, ballDOM));
 }

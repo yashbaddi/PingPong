@@ -41,6 +41,8 @@ wsClient.onmessage = (message) => {
     );
     oppositePlayerPaddle = createPingpongBar("top");
     ball = createPingpongBall();
+    animateBall(ball);
+
     app.append(mainPlayerPaddle, oppositePlayerPaddle, ball);
   }
 
@@ -49,7 +51,6 @@ wsClient.onmessage = (message) => {
 
     setBar(oppositePlayerPaddle, "oppositePlayer", responseGame.paddlePos);
     setBall(ball, responseGame.ball);
-    animateBall(ball);
   }
 
   if (response.type === "over") {
