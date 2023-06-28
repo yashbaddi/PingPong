@@ -1,6 +1,6 @@
 import { createGame, joinGame } from "../Services/Socket/requests.js";
 import { createDOMElement } from "../Services/createDOMElement.js";
-import { resetBar } from "./pingpongBar.js";
+import { resetPaddle } from "./pingpongPaddle.js";
 
 export function startGameElement() {
   const gameMessage = createDOMElement(
@@ -45,7 +45,7 @@ export function startGameElement() {
 
 export function setGame(box, app, bar) {
   box.remove();
-  resetBar(bar);
+  resetPaddle(bar);
 }
 
 function joinGameElement(box) {

@@ -27,14 +27,13 @@ export function updatePos() {
     gameID: gameID,
     game: {
       ball: game.ball,
-      paddlePos: game.paddle.mainPaddle,
+      paddlePos: game.paddle.firstPersonPaddlePos,
     },
   };
   wsClient.send(JSON.stringify(payload));
 }
 
 export function gameOver() {
-  updatePos();
   GameOverDOM("You Have Lost");
   const payload = {
     type: "gameOver",

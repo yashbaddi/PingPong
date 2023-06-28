@@ -10,8 +10,9 @@ export const game = {
     },
   },
   paddle: {
-    mainPaddle: window.innerWidth / 2,
-    oppositePaddle: window.innerWidth / 2,
+    firstPersonPaddlePos: window.innerWidth / 2,
+    secondPersonPaddlePos: window.innerWidth / 2,
   },
-  isSecondPlayer: false,
+  isMainPlayer: false,
+  isGameOver: false,
 };

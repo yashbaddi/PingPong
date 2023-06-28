@@ -6,7 +6,10 @@ import {
   createPingpongBall,
   setBall,
 } from "../../Components/pingpongBall.js";
-import { createPingpongBar, setBar } from "../../Components/pingpongBar.js";
+import {
+  createPingpongPaddle,
+  setPaddle,
+} from "../../Components/pingpongPaddle.js";
 import { game } from "../../Store/gameStatus.js";
 import { updatePos } from "./requests.js";
 
@@ -27,12 +30,12 @@ wsClient.onmessage = (message) => {
   }
   if (response.type === "create") {
     gameID = response.gameID;
-    mainPlayerPaddle = createPingpongBar();
+    mainPlayerPaddle = createPingpongPaddle();
   }
 
   if (response.type === "join") {
     gameID = response.gameID;
-    mainPlayerPaddle = createPingpongBar();
+    mainPlayerPaddle = createPingpongPaddle();
     game.isSecondPlayer = true;
   }
 
@@ -43,7 +46,7 @@ wsClient.onmessage = (message) => {
     oppositePlayerID = Object.values(response.game.players).filter(
       (player) => player !== clientID
     );
-    oppositePlayerPaddle = createPingpongBar("top");
+    oppositePlayerPaddle = createPingpongPaddle("top");
     ball = createPingpongBall();
     animateBall(ball);
 
@@ -53,21 +56,10 @@ wsClient.onmessage = (message) => {
   if (response.type === "updateState") {
     const responseGameBar = window.innerWidth - response.game.paddlePos;
 
-    setBar(oppositePlayerPaddle, "oppositePlayer", responseGameBar);
+    setPaddle(oppositePlayerPaddle, "oppositePlayer", responseGameBar);
 
-    // const responseGameBall = {
-    //   // pos: {
-    //   //   y: window.innerHeight - response.game.ball.pos.y,
-    //   //   x: window.innerWidth - response.game.ball.pos.x,
-    //   // },
-    //   pos: response.game.ball.pos,
-    //   direction: {
-    //     vertical: response.game.ball.direction.vertical * -1,
-    //     horizontal: response.game.ball.direction.horizontal * -1,
-    //   },
-    // };
     const responseGameBall = response.game.ball;
-    setBall(ball, responseGameBall);
+    if (game.isSecondPlayer === true) setBall(ball, responseGameBall);
   }
 
   if (response.type === "gameOver") {
