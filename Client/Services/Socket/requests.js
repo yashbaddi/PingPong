@@ -5,7 +5,7 @@ import { clientID, gameID } from "./ws-connection.js";
 
 export function createGame() {
   const payload = {
-    type: "create",
+    method: "create",
     clientID: clientID,
   };
   wsClient.send(JSON.stringify(payload));
@@ -13,7 +13,7 @@ export function createGame() {
 
 export function joinGame(id) {
   const payload = {
-    type: "join",
+    method: "join",
     clientID: clientID,
     gameID: id,
   };
@@ -22,7 +22,7 @@ export function joinGame(id) {
 
 export function updatePos() {
   const payload = {
-    type: "updatePos",
+    method: "updatePos",
     clientID: clientID,
     gameID: gameID,
     game: {
@@ -36,7 +36,7 @@ export function updatePos() {
 export function gameOver() {
   GameOverDOM("You Have Lost");
   const payload = {
-    type: "gameOver",
+    method: "gameOver",
     clientID: clientID,
     gameID: gameID,
   };
