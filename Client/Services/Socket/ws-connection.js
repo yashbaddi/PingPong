@@ -7,6 +7,8 @@ import {
   setBall,
 } from "../../Components/pingpongBall.js";
 import { createPingpongBar, setBar } from "../../Components/pingpongBar.js";
+import { game } from "../../Store/gameStatus.js";
+import { updatePos } from "./requests.js";
 
 const wsClient = new WebSocket("ws://localhost:8080");
 export let clientID, gameID, oppositePlayerID;
@@ -31,6 +33,7 @@ wsClient.onmessage = (message) => {
   if (response.type === "join") {
     gameID = response.gameID;
     mainPlayerPaddle = createPingpongBar();
+    game.isSecondPlayer = true;
   }
 
   if (response.type === "play") {
@@ -48,10 +51,23 @@ wsClient.onmessage = (message) => {
   }
 
   if (response.type === "updateState") {
-    const responseGame = response.game;
+    const responseGameBar = window.innerWidth - response.game.paddlePos;
 
-    setBar(oppositePlayerPaddle, "oppositePlayer", responseGame.paddlePos);
-    setBall(ball, responseGame.ball);
+    setBar(oppositePlayerPaddle, "oppositePlayer", responseGameBar);
+
+    // const responseGameBall = {
+    //   // pos: {
+    //   //   y: window.innerHeight - response.game.ball.pos.y,
+    //   //   x: window.innerWidth - response.game.ball.pos.x,
+    //   // },
+    //   pos: response.game.ball.pos,
+    //   direction: {
+    //     vertical: response.game.ball.direction.vertical * -1,
+    //     horizontal: response.game.ball.direction.horizontal * -1,
+    //   },
+    // };
+    const responseGameBall = response.game.ball;
+    setBall(ball, responseGameBall);
   }
 
   if (response.type === "gameOver") {

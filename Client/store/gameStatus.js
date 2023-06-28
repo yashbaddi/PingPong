@@ -13,6 +13,5 @@ export const game = {
     mainPaddle: window.innerWidth / 2,
     oppositePaddle: window.innerWidth / 2,
   },
+  isSecondPlayer: false,
 };
-
-export const gameInformation = {};

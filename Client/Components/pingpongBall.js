@@ -43,9 +43,9 @@ function updateBallDOM(ballDOM) {
 
 export function animateBall(ballDOM) {
   borderColisionHandler();
-
   game.ball.pos.x += 3 * game.ball.direction.horizontal;
   game.ball.pos.y += 3 * game.ball.direction.vertical;
+
   updateBallDOM(ballDOM);
   requestAnimationFrame(animateBall.bind(this, ballDOM));
 }
