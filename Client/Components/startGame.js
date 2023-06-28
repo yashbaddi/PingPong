@@ -1,5 +1,5 @@
 import { createGame, joinGame } from "../Services/Socket/requests.js";
-import { createDOMElement } from "../Services/createDOMElement.js";
+import { createDOMElement } from "../Utils/createDOMElement.js";
 import { resetPaddle } from "./pingpongPaddle.js";
 
 export function startGameElement() {

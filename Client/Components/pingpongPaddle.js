@@ -1,4 +1,4 @@
-import { createDOMElement } from "../Services/createDOMElement.js";
+import { createDOMElement } from "../Utils/createDOMElement.js";
 import { updatePos } from "../Services/Socket/requests.js";
 import { game } from "../Store/gameStatus.js";
 

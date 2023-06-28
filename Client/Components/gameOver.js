@@ -1,4 +1,4 @@
-import { createDOMElement } from "../Services/createDOMElement.js";
+import { createDOMElement } from "../Utils/createDOMElement.js";
 import { setGame } from "./StartGame.js";
 
 export function GameOverDOM(message) {

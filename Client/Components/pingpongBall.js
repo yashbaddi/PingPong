@@ -1,5 +1,5 @@
 import { gameOver, updatePos } from "../Services/Socket/requests.js";
-import { createDOMElement } from "../Services/createDOMElement.js";
+import { createDOMElement } from "../Utils/createDOMElement.js";
 import { didPaddleBallColide } from "../Services/didPaddleBallCollide.js";
 import { game } from "../Store/gameStatus.js";
 

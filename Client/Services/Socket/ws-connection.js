@@ -25,21 +25,21 @@ wsClient.onopen = (ws) => {
 wsClient.onmessage = (message) => {
   const response = JSON.parse(message.data.toString());
   console.log(response);
-  if (response.type === "open") {
+  if (response.method === "open") {
     clientID = response.clientID;
   }
-  if (response.type === "create") {
+  if (response.method === "create") {
     gameID = response.gameID;
     mainPlayerPaddle = createPingpongPaddle();
   }
 
-  if (response.type === "join") {
+  if (response.method === "join") {
     gameID = response.gameID;
     mainPlayerPaddle = createPingpongPaddle();
     game.isSecondPlayer = true;
   }
 
-  if (response.type === "play") {
+  if (response.method === "play") {
     const app = document.getElementById("app");
     app.innerHTML = "";
 
@@ -53,7 +53,7 @@ wsClient.onmessage = (message) => {
     app.append(mainPlayerPaddle, oppositePlayerPaddle, ball);
   }
 
-  if (response.type === "updateState") {
+  if (response.method === "updateState") {
     const responseGameBar = window.innerWidth - response.game.paddlePos;
 
     setPaddle(oppositePlayerPaddle, "oppositePlayer", responseGameBar);
@@ -62,7 +62,7 @@ wsClient.onmessage = (message) => {
     if (game.isSecondPlayer === true) setBall(ball, responseGameBall);
   }
 
-  if (response.type === "gameOver") {
+  if (response.method === "gameOver") {
     const app = document.getElementById("app");
     app.innerHTML = "";
     app.append(GameOverDOM("You Have Won"));
