@@ -14,7 +14,7 @@ import {
 import { game } from "../../Store/gameStatus.js";
 import { updatePaddlePos } from "./requests.js";
 
-const wsClient = new WebSocket("ws://localhost:8080");
+const wsClient = new WebSocket("ws://localhost:8080/ws");
 export let clientID, gameID, oppositePlayerID;
 
 let firstPersonPaddle, secondPersonPaddle, ball;

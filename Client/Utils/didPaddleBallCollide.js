@@ -19,6 +19,5 @@ export function didPaddleBallColide() {
   if (ballLeftEdge <= paddleRightEdge && ballLeftEdge >= paddleLeftEdge) {
     return true;
   }
-  game.isGameOver = true;
   return false;
 }
