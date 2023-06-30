@@ -4,10 +4,7 @@ export const game = {
       x: window.innerWidth / 2,
       y: window.innerHeight / 2,
     },
-    direction: {
-      horizontal: 1,
-      vertical: 1,
-    },
+    direction: {},
   },
   paddle: {
     firstPersonPaddlePos: window.innerWidth / 2,

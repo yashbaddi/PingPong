@@ -20,15 +20,22 @@ export function joinGame(id) {
   wsClient.send(JSON.stringify(payload));
 }
 
-export function updatePos() {
+export function updatePaddlePos() {
   const payload = {
-    method: "updatePos",
+    method: "updatePaddlePos",
     clientID: clientID,
     gameID: gameID,
-    game: {
-      ball: game.ball,
-      paddlePos: game.paddle.firstPersonPaddlePos,
-    },
+    paddle: game.paddle.firstPersonPaddlePos,
+  };
+  wsClient.send(JSON.stringify(payload));
+}
+
+export function updateBallPos() {
+  const payload = {
+    method: "updateBallPos",
+    clientID: clientID,
+    gameID: gameID,
+    ball: game.ball,
   };
   wsClient.send(JSON.stringify(payload));
 }

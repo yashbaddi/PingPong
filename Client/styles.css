@@ -18,22 +18,22 @@ body {
     position: fixed;
 }
 
-.bar{
+.paddle{
     background-color: var(--color-main);
     width: 12rem;
     height: 0.75rem;
     border-radius: 0.5rem;
     box-shadow: 0rem 0rem 2rem var(--color-main);
     position: absolute;
-    /* transform: translate(-50%,-50%); */
+    transform: translate(-50%,-50%);
 
 }
 
-.bar-bottom{
+.paddle-bottom{
     left: 35rem;
     bottom: 1rem;
 }
-.bar-top{
+.paddle-top{
     left: 50%;
     top: 1rem;
 }
@@ -48,6 +48,7 @@ body {
     left: 50%;
     top: 50%;
     transform: translate(-50%,-50%);
+
 
 }
 

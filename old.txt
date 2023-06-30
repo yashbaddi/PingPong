@@ -11,5 +11,16 @@
     //   },
     // };
 
-
+export function updatePos() {
+  const payload = {
+    method: "updatePos",
+    clientID: clientID,
+    gameID: gameID,
+    game: {
+      ball: game.ball,
+      paddlePos: game.paddle.firstPersonPaddlePos,
+    },
+  };
+  wsClient.send(JSON.stringify(payload));
+}
     

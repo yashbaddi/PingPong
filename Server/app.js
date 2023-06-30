@@ -3,8 +3,9 @@ import {
   wsCreateMethod,
   wsGameOverMethod,
   wsJoinMethod,
-  wsUpdatePosMethod,
-} from "./Socket/socketMessageHandlers";
+  wsUpdateBallPosMethod,
+  wsUpdatePaddlePosMethod,
+} from "./Socket/socketMessageHandlers.js";
 
 const wsServer = new WebSocketServer({ port: 8080 });
 const clientConnections = {};
@@ -29,8 +30,11 @@ wsServer.on("connection", (connection) => {
     if (wsRequest.method === "join")
       wsJoinMethod(clientConnections, games, wsRequest, connection);
 
-    if (wsRequest.method === "updatePos")
-      wsUpdatePosMethod(clientConnections, games, wsRequest, connection);
+    if (wsRequest.method === "updateBallPos")
+      wsUpdateBallPosMethod(clientConnections, games, wsRequest, connection);
+
+    if (wsRequest.method === "updatePaddlePos")
+      wsUpdatePaddlePosMethod(clientConnections, games, wsRequest, connection);
 
     if (wsRequest.method === "gameOver")
       wsGameOverMethod(clientConnections, games, wsRequest, connection);

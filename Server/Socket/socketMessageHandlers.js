@@ -3,16 +3,7 @@ export function wsCreateMethod(clientConnections, games, data, connection) {
 
   const game = {
     players: [data.clientID],
-    ball: {
-      pos: {
-        top: 560,
-        left: 560,
-      },
-      direction: {
-        horizontal: 1,
-        vertical: 1,
-      },
-    },
+    ball: {},
     paddle: {},
     gameOver: false,
   };
@@ -49,17 +40,38 @@ export function wsJoinMethod(clientConnections, games, data, connection) {
   });
 }
 
-export function wsUpdatePosMethod(clientConnections, games, data, connection) {
+export function wsUpdatePaddlePosMethod(
+  clientConnections,
+  games,
+  data,
+  connection
+) {
   const game = games[data.gameID];
-  game.paddle[data.clientID] = data.game.paddlePos;
-  game.ball = data.game.ball;
+  game.paddle[data.clientID] = data.paddle;
 
   const payload = {
-    method: "updateState",
-    game: {
-      ball: data.game.ball,
-      paddlePos: data.game.paddlePos,
-    },
+    method: "updatePaddleState",
+    paddle: data.paddle,
+  };
+
+  const oppositePlayerID = game.players.filter(
+    (player) => player !== data.clientID
+  )[0];
+  clientConnections[oppositePlayerID].send(JSON.stringify(payload));
+}
+
+export function wsUpdateBallPosMethod(
+  clientConnections,
+  games,
+  data,
+  connection
+) {
+  const game = games[data.gameID];
+  game.ball = data.ball;
+
+  const payload = {
+    method: "updateBallState",
+    ball: data.ball,
   };
 
   const oppositePlayerID = game.players.filter(

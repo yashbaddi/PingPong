@@ -1,5 +1,5 @@
 import { createDOMElement } from "../Utils/createDOMElement.js";
-import { updatePos } from "../Services/Socket/requests.js";
+import { updatePaddlePos } from "../Services/Socket/requests.js";
 import { game } from "../Store/gameStatus.js";
 
 export function createPingpongPaddle(position = "bottom") {
@@ -15,6 +15,7 @@ export function createPingpongPaddle(position = "bottom") {
     paddleDOM.addEventListener("keydown", paddleKeyEvent);
     paddleDOM.addEventListener("mousedown", paddleMouseEvent);
   }
+  paddleDOM.style.left = window.innerWidth / 2 + "px";
   return paddleDOM;
 }
 
@@ -26,7 +27,7 @@ function paddleKeyEvent(event) {
       "firstPersonPaddlePos",
       parseInt(paddleDOM.left || 0) - 50
     );
-    updatePos();
+    updatePaddlePos();
   }
   if (event.key === "ArrowRight" && parseInt(paddleDOM.right) >= 0) {
     setPaddle(
@@ -34,7 +35,7 @@ function paddleKeyEvent(event) {
       "firstPersonPaddlePos",
       parseInt(paddleDOM.left || 0) + 50
     );
-    updatePos();
+    updatePaddlePos();
   }
 }
 
@@ -42,7 +43,7 @@ function paddleMouseEvent(event) {
   const paddleDOM = event.target;
   function onMouseMove(event) {
     setPaddle(paddleDOM, "firstPersonPaddlePos", event.pageX);
-    updatePos();
+    updatePaddlePos();
   }
   document.addEventListener("mousemove", onMouseMove);
   paddleDOM.addEventListener("mouseup", (event) => {
