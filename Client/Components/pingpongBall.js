@@ -39,7 +39,7 @@ function sendBallPos() {
 }
 
 export function setBall(ballDOM, newBall) {
-  if (!didPaddleBallColide) game.ball.pos = newBall.pos;
+  game.ball.pos = newBall.pos;
   game.ball.direction = newBall.direction;
   updateBallDOM(ballDOM);
 }
