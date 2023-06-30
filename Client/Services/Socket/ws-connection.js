@@ -82,6 +82,7 @@ wsClient.onmessage = (message) => {
     const app = document.getElementById("app");
     app.innerHTML = "";
     app.append(GameOverDOM("You Have Won"));
+    game.isGameOver = true;
   }
 };
 

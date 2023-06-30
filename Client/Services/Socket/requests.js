@@ -42,6 +42,7 @@ export function updateBallPos() {
 
 export function gameOver() {
   GameOverDOM("You Have Lost");
+  game.isGameOver = true;
   const payload = {
     method: "gameOver",
     clientID: clientID,

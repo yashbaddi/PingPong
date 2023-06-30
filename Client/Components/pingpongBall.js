@@ -39,6 +39,7 @@ function sendBallPos() {
 }
 
 export function setBall(ballDOM, newBall) {
+  if (!isMainPlayer) borderColisionHandler();
   game.ball.pos = newBall.pos;
   game.ball.direction = newBall.direction;
   updateBallDOM(ballDOM);
